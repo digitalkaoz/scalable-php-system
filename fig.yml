@@ -1,0 +1,4 @@
+php:
+    image: elasticphp/serf-fpm
+    ports:
+      - "9000"
