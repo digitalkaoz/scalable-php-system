@@ -1,4 +1,19 @@
+serf:
+    image: elasticphp/serf-serf
+    ports:
+      - 7946
+      - 7373
+
 php:
     image: elasticphp/serf-fpm
     ports:
-      - "9000"
+      - 9000
+    links:
+      - serf
+
+web:
+    image: elasticphp/serf-nginx
+    ports:
+      - 81
+    links:
+      - serf

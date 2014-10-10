@@ -1,17 +1,17 @@
-FROM ubuntu:quantal
+FROM ubuntu:14.04
 MAINTAINER Robert Schönthal <robert.schoenthal@gmail.com>
 
-RUN apt-get update -q
-RUN apt-get install -qy build-essential git supervisor unzip
+RUN apt-get update && apt-get -qy upgrade && apt-get install -qy unzip
+
+# Install Serf
 ADD https://dl.bintray.com/mitchellh/serf/0.5.0_linux_amd64.zip serf.zip
 RUN unzip serf.zip
 RUN rm serf.zip
 RUN mv serf /usr/bin/
 
-ADD /start-serf.sh /start-serf.sh
-ADD /run.sh /run.sh
-ADD /supervisord-serf.conf /etc/supervisor/conf.d/supervisord-serf.conf
-RUN chmod 755 /*.sh
+# Install Supervisor
+RUN apt-get install -qy supervisor
+ADD /supervisord-serf.conf /etc/supervisor/supervisord.conf
 
 EXPOSE 7946 7373
-CMD ["/run.sh"]
+CMD ["/usr/bin/supervisord"]
