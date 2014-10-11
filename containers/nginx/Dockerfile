@@ -24,6 +24,9 @@ ADD /supervisord-nginx.conf /etc/supervisor/supervisord.conf
 # Configure Nginx
 ADD /nginx.conf /etc/nginx/nginx.conf
 
+#RUN ln -s /etc/nginx/nginx.conf /usr/share/nginx/test.html
+RUN echo "<?php phpinfo();" > /usr/share/nginx/index.php
+
 # Add Hosts
 ADD /hosts/default /etc/nginx/sites-enabled/default
 

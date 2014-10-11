@@ -24,10 +24,10 @@ RUN sed -i '/^listen /c listen = 0.0.0.0:9000' /etc/php5/fpm/pool.d/www.conf
 RUN sed -i 's/^listen.allowed_clients/;listen.allowed_clients/' /etc/php5/fpm/pool.d/www.conf
 
 # Default PHP File
-RUN mkdir -p /srv/http && echo "<?php phpinfo();" > /srv/http/index.php
-RUN chown -R www-data:www-data /srv/http
+#RUN mkdir -p /srv/http && echo "<?php phpinfo();" > /srv/http/index.php
+#RUN chown -R www-data:www-data /srv/http
 
-VOLUME /srv/http
+#VOLUME /srv/http
 
 EXPOSE 9000
 

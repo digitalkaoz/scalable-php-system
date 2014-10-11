@@ -1,11 +1,43 @@
 server {
-    server_name localhost;
-    listen 81;
+	listen 81 default_server;
+	listen [::]:81 default_server ipv6only=on;
 
-    root /var/lib/nginx;
+  root /usr/share/nginx;
+	index index.html index.htm index.php;
 
-    location / {
-        include inc/fastcgi.conf;
-        fastcgi_pass @php_fpm;
-    }
+	server_name localdocker;
+
+	location / {
+		#try_files $uri $uri/ =404;
+    #autoindex on;
+    include fastcgi.conf;
+    fastcgi_pass php_fpm;
+	}
+
+  location ~ /\.ht {
+  	deny all;
+  }
+
+	#error_page 404 /404.html;
+
+	# redirect server error pages to the static page /50x.html
+	#
+	#error_page 500 502 503 504 /50x.html;
+	#location = /50x.html {
+	#	root /usr/share/nginx/html;
+	#}
+
+	# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+	#
+	#location ~ \.php$ {
+	#	fastcgi_split_path_info ^(.+\.php)(/.+)$;
+	#	# NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
+	#
+	#	# With php5-cgi alone:
+	#	fastcgi_pass 127.0.0.1:9000;
+	#	# With php5-fpm:
+	#	fastcgi_pass unix:/var/run/php5-fpm.sock;
+	#	fastcgi_index index.php;
+	#	include fastcgi_params;
+	#}
 }
