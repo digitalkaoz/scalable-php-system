@@ -6,10 +6,10 @@ fi
 
 while read line; do
     ROLE=`echo $line | awk '{print \$3 }'`
-    IP=`echo $line | awk '{print \$2 }'`
+    SERVER=`echo $line | awk '{printf "server %s:9000;", $2}'`
 
-    if [ "${ROLE}" == "php" ]; then
-        sed -i '/#PHP_FPM_NODES/a \\tserver '$IP'' /etc/nginx/nginx.conf
+    if [ "x${ROLE}" == "xphp" ]; then
+        sed -i '/PHP_FPM_NODES/a\		'$SERVER'' /etc/nginx/nginx.conf
     fi
 done
 

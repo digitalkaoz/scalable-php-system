@@ -1,19 +1,19 @@
 serf:
-    image: elasticphp/serf-serf
+    build: containers/serf
     ports:
-      - 7946
-      - 7373
+      - "7946"
+      - "7373"
 
 php:
-    image: elasticphp/serf-fpm
+    build: containers/php
     ports:
-      - 9000
+      - "9000"
     links:
       - serf
 
 web:
-    image: elasticphp/serf-nginx
+    build: containers/nginx
     ports:
-      - 81
+      - "81:81"
     links:
       - serf

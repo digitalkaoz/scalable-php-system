@@ -9,7 +9,7 @@ Install [docker](https://www.docker.com/) and [fig](http://www.fig.sh/).
 Build the Images
 
 ```
-$ ./build_images.sh
+$ fig build
 ```
 
 ##Usage
