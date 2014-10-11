@@ -10,6 +10,8 @@ RUN apt-get -qy install php5 php5-fpm php5-gd php5-ldap php5-sqlite php5-pgsql p
 ADD https://dl.bintray.com/mitchellh/serf/0.5.0_linux_amd64.zip serf.zip
 RUN unzip serf.zip
 RUN mv serf /usr/bin/
+ADD serf-join.sh /serf-join.sh
+RUN chmod 755 /*.sh
 
 # Install Supervisor
 RUN apt-get install -qy supervisor
