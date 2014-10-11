@@ -6,6 +6,7 @@ RUN add-apt-repository -y ppa:nginx/stable && apt-get update
 
 #Install Nginx
 RUN apt-get install -y nginx
+RUN chown -R www-data:www-data /var/lib/nginx
 
 # Install Serf
 ADD https://dl.bintray.com/mitchellh/serf/0.5.0_linux_amd64.zip serf.zip
@@ -21,9 +22,10 @@ RUN apt-get install -qy supervisor
 ADD /supervisord-nginx.conf /etc/supervisor/supervisord.conf
 
 # Configure Nginx
-RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
-RUN sed -i 's/80/81/g' /etc/nginx/sites-enabled/default
-RUN chown -R www-data:www-data /var/lib/nginx
+ADD /nginx.conf /etc/nginx/nginx.conf
+
+# Add Hosts
+ADD /hosts/default /etc/nginx/sites-enabled/default
 
 VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx"]
 

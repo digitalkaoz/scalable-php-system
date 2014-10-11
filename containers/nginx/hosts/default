@@ -1,0 +1,11 @@
+server {
+    server_name localhost;
+    listen 81;
+
+    root /var/lib/nginx;
+
+    location / {
+        include inc/fastcgi.conf;
+        fastcgi_pass @php_fpm;
+    }
+}

@@ -6,11 +6,10 @@ fi
 
 while read line; do
     ROLE=`echo $line | awk '{print \$3 }'`
-    NODE=`echo $line | awk '{print \$1 }'`
     IP=`echo $line | awk '{print \$2 }'`
 
-    if [ "x${ROLE}" == "php" ]; then
-        #sed -i '/.*bind \*:9000/a \\t\tserver '$NODE' '$IP'' /etc/haproxy/haproxy.cfg
+    if [ "${ROLE}" == "php" ]; then
+        sed -i '/#PHP_FPM_NODES/a \\tserver '$IP'' /etc/nginx/nginx.conf
     fi
 done
 
