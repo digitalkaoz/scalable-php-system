@@ -9,7 +9,7 @@ while read line; do
 
     if [ "x${ROLE}" == "xphp" ]; then
         IP=`echo $line | awk '{print \$2 }'`
-        sed -i '/PHP_FPM_NODES/a\		server '$IP':9000' /etc/nginx/nginx.conf
+        sed -i '/PHP_FPM_NODES/a\          server '$IP':9000;' /etc/nginx/nginx.conf
     fi
 done
 

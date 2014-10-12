@@ -3,15 +3,15 @@ server {
 	listen [::]:81 default_server ipv6only=on;
 
   root /usr/share/nginx;
-	index index.html index.htm index.php;
+	#index index.html index.htm;
 
 	server_name localdocker;
 
 	location / {
 		#try_files $uri $uri/ =404;
-    #autoindex on;
-    include fastcgi.conf;
-    fastcgi_pass php_fpm;
+    autoindex on;
+    #include fastcgi.conf;
+    #fastcgi_pass php_fpm;
 	}
 
   location ~ /\.ht {
