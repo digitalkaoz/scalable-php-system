@@ -26,8 +26,9 @@ RUN sed -i 's/^listen.allowed_clients/;listen.allowed_clients/' /etc/php5/fpm/po
 # Default PHP File
 #RUN mkdir -p /srv/http && echo "<?php phpinfo();" > /srv/http/index.php
 #RUN chown -R www-data:www-data /srv/http
+RUN mkdir -p /srv/www
 
-#VOLUME /srv/http
+VOLUME /srv/www
 
 EXPOSE 9000
 

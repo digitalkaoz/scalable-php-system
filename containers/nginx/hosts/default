@@ -2,16 +2,18 @@ server {
 	listen 81 default_server;
 	listen [::]:81 default_server ipv6only=on;
 
-  root /usr/share/nginx;
+  root /srv/www;
 	#index index.html index.htm;
 
 	server_name localdocker;
 
 	location / {
-		#try_files $uri $uri/ =404;
-    autoindex on;
-    #include fastcgi.conf;
-    #fastcgi_pass php_fpm;
+		try_files $uri $uri/ =404;
+    #autoindex on;
+    include fastcgi.conf;
+		fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+		include        fastcgi_params;
+    fastcgi_pass php_fpm;
 	}
 
   location ~ /\.ht {

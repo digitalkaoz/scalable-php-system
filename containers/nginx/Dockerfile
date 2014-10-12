@@ -24,13 +24,14 @@ ADD /supervisord-nginx.conf /etc/supervisor/supervisord.conf
 # Configure Nginx
 ADD /nginx.conf /etc/nginx/nginx.conf
 
-RUN ln -s /etc/nginx/nginx.conf /usr/share/nginx/test.html
-RUN echo "<?php phpinfo();" > /usr/share/nginx/index.php
+#RUN ln -s /etc/nginx/nginx.conf /usr/share/nginx/test.html
+#RUN echo "<?php phpinfo();" > /usr/share/nginx/index.php
+RUN mkdir -p srv/www
 
 # Add Hosts
 ADD /hosts/default /etc/nginx/sites-enabled/default
 
-VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx"]
+VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "srv/www"]
 
 EXPOSE 81
 
