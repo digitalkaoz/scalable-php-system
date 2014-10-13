@@ -17,3 +17,5 @@ web:
       - "81:81"
     links:
       - serf
+    volumes_from:
+      - php
