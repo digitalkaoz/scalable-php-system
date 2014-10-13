@@ -11,6 +11,7 @@ php:
     links:
       - serf
       - elasticsearch
+      - cache
 
 web:
     build: containers/nginx
@@ -20,6 +21,13 @@ web:
       - serf
     volumes_from:
       - php
+
+cache:
+    build: containers/redis
+    ports:
+      - "6379"
+    links:
+      - serf
 
 elasticsearch:
     build: containers/elasticsearch
