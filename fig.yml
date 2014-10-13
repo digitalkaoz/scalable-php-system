@@ -10,6 +10,7 @@ php:
       - "9000"
     links:
       - serf
+      - elasticsearch
 
 web:
     build: containers/nginx
@@ -19,3 +20,11 @@ web:
       - serf
     volumes_from:
       - php
+
+elasticsearch:
+    build: containers/elasticsearch
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    links:
+      - serf

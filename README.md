@@ -9,7 +9,7 @@ based on docker
 * [haproxy](http://www.haproxy.org/) for loadbalancing **needed? todo**
 * [varnish](https://www.varnish-cache.org/) as http cache **todo**
 * [redis](http://redis.io/) for application caches **todo**
-* [mysql with fabric](http://dev.mysql.com/downloads/fabric/) for relational Data Storage
+* [mysql with fabric](http://dev.mysql.com/downloads/fabric/) for relational Data Storage **todo**
 * [elasticsearch](http://www.elasticsearch.org/) for unrelational Data Storage
 
 ##Installation
@@ -30,9 +30,15 @@ Create and Run Containers with fig
 $ fig up -d
 ```
 
+##Access
+
+* **Nginx** http://localdocker:81
+* **Elasticsearch** http://localdocker:9200
+
+
 ###Scaling
 
-scaling out could be done at every level of the system:
+scaling out could be done very easily at every level of the system:
 
 ```
 $ fig scale php=5 #5 php nodes
