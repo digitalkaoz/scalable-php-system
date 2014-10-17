@@ -5,6 +5,8 @@ RUN apt-get update && apt-get -qy upgrade && apt-get install -qy python-software
 
 #Install Redis
 RUN apt-get update && apt-get install -yq redis-server
+RUN sed -i '/daemonize /c daemonize = no' /etc/redis/redis.conf
+#RUN sed -e "\$acluster-enabled yes" /etc/redis/redis.conf
 
 # Install Serf
 ADD https://dl.bintray.com/mitchellh/serf/0.5.0_linux_amd64.zip serf.zip

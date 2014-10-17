@@ -16,7 +16,7 @@ php:
 web:
     build: containers/nginx
     ports:
-      - "81:81"
+      - "81"
     links:
       - serf
     volumes_from:
@@ -34,5 +34,12 @@ elasticsearch:
     ports:
       - "9200:9200"
       - "9300:9300"
+    links:
+      - serf
+
+http:
+    build: containers/varnish
+    ports:
+      - "80:80"
     links:
       - serf
